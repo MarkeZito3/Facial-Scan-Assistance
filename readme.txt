@@ -1,4 +1,4 @@
-Hola, este es el programa de los alumnos: Marcos Pereyra, Leonardo Paez, Luis Rubin y Marcelo Ruiz Monacci.
+Hola, este es el programa de los alumnos: Marcos Gabriel Pereyra, Leonardo David Paez, Miguel Angel Luis Rubin Azas y Marcelo Ruiz Burgos.
 
 Este programa se encarga de Tomar asistencias de los alumnos con tan solo una cámara. Solo deben ponerse en frente de ella para que, si su rostro está registrado, lo anote en una lista de alumnos precentes.
 
@@ -9,6 +9,7 @@ Devido a inconvenientes que aún no sabemos nuestro proyecto no puede ser compri
 
 a continuación mostraré los pasos para abrir el proyecto:
 
-1) Tener instalado Python 3.9 en su Computadora
-2) (Solo hace falta instalarlo una sola vez) Instalador de los Archivos necesarios para ejecutar "Facial Scan Assistance.bat" abriendo el archivo llamado "pip_archivo.bat"
-3) Ejecuar el archivo llamado "Facial Scan Assistance.bat"
+1) Tener Cámara conectáda a la computadora
+2) Tener instalado Python 3.9 en su Computadora
+3) (Solo hace falta instalarlo una sola vez) Instalador de los Archivos necesarios para ejecutar "Facial Scan Assistance.bat" abriendo el archivo llamado "pip_archivo.bat"
+4) Ejecuar el archivo llamado "Facial Scan Assistance.bat"
