@@ -1,4 +1,4 @@
-Hola, este es el programa de los alumnos: Marcos Gabriel Pereyra, Leonardo David Paez, Miguel Angel Luis Rubin Azas y Marcelo Ruiz Burgos.
+Hola, este es el programa de los alumnos: Pereyra Marcos, Paez Leonardo, Rubin Azás Luis y Ruiz Burgos Marcelo.
 
 Este programa se encarga de Tomar asistencias de los alumnos con tan solo una cámara. Solo deben ponerse en frente de ella para que, si su rostro está registrado, lo anote en una lista de alumnos precentes.
 
