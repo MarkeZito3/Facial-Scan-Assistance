@@ -1,2 +1,1 @@
-cls
 python main.py

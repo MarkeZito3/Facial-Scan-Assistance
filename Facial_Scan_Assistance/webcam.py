@@ -78,15 +78,22 @@ def training():
 
 def lista():
     dataPath = "data"
+
+    if not os.path.exists(dataPath):
+        os.makedirs(dataPath)
+
     list_students = os.listdir(dataPath)
 
     return list_students
 
 def assistance():
 
-    precentes = []
+    presentes = []
 
     dataPath = "data"
+    if not os.path.exists(dataPath):
+        os.makedirs(dataPath)
+
     imagePath = os.listdir(dataPath)
 
     filePath = str("Presentes" + "/")
@@ -116,7 +123,7 @@ def assistance():
         if fecha in os.listdir(filePath):
             cv2.putText(frame, '"ESC" para salir. ', (10, 20), 2, 0.5, (128, 0, 255), 1, cv2.LINE_AA)
         else:
-            cv2.putText(frame, '"ESC" para salir. Solo si estan todos los Alumnos PRESENTES', (10, 20), 2, 0.5,
+            cv2.putText(frame, '"ESC" para salir. Solo si se reconoció a todos los Alumnos PRESENTES', (10, 20), 2, 0.5,
                         (128, 0, 255), 1, cv2.LINE_AA)
 
         for (x, y, w, h) in faces:
@@ -136,10 +143,10 @@ def assistance():
                 cv2.putText(frame, "{}".format(imagePath[result[0]]), (x, y - 25), 1, 1.3, (0, 255, 0), 1, cv2.LINE_AA)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-                if imagePath[result[0]] in precentes:
+                if imagePath[result[0]] in presentes:
                     pass
                 else:
-                    precentes.append(imagePath[result[0]])
+                    presentes.append(imagePath[result[0]])
 
             else:
                 cv2.putText(frame, "desconocido", (x, y - 20), 1, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
@@ -158,15 +165,15 @@ def assistance():
         file = open(filePath + fecha, "a")
         file.write("==========================================================================\n")
         file.write("Alumnos Presentes Tarde: \n")
-        for x in range(len(precentes)):
-            file.write(precentes[x] + "\n")
+        for x in range(len(presentes)):
+            file.write(presentes[x] + "\n")
         file.close()
     else:
         file = open(filePath + fecha, "a")
         file.write("==========================================================================\n")
         file.write("Alumnos Presentes: \n")
-        for x in range(len(precentes)):
-            file.write(precentes[x] + "\n")
+        for x in range(len(presentes)):
+            file.write(presentes[x] + "\n")
         file.close()
 
     return 0

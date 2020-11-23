@@ -3,7 +3,7 @@ from datetime import date
 import os
 
 mes = {1:"Enero",2:"Febrero",3:"Marzo",4:"Abril",5:"Mayo",6:"Junio",7:"Julio",8:"Agosto",9:"Septiembre",10:"Octubre",11:"Noviembre",12:"Diciembre"}
-dia_semana = {0:"lunes",1:"martes",2:"miércoles",3:"jueves",4:"viernes",5:"sábado",6:"domingo"}
+dia_semana = {0:"Lunes",1:"Martes",2:"Miércoles",3:"Jueves",4:"Viernes",5:"Sábado",6:"Domingo"}
 fecha = dia_semana[date.today().weekday()] + " " + str(date.today().day) + " de " + mes[date.today().month] + " del " + str(date.today().year)
 
 
@@ -53,13 +53,11 @@ while while_menu == True:
                 break
         os.system("cls")
 
-
     elif op == 2:
         menu_op_2 = True
         while menu_op_2 == True:
             print("==========================================================================")
             webcam.assistance()
-            while_menu = False
             print("==========================================================================\n")
             os.system("cls")
             skip = int(input("==========================================================================\n"
@@ -83,6 +81,7 @@ while while_menu == True:
         while menu_op_3 == True:
             lista_alum = webcam.lista()
             cont = 1
+            os.system("cls")
             print("==========================================================================")
             for x in lista_alum:
                 print(cont,")" ,x)
@@ -108,6 +107,6 @@ while while_menu == True:
         os.system("cls")
 
 print("""==========================================================================
-||\t\tEl programa ha Finalizado\n\t\t||
-\t\tRevidar la Carpeta "Presentes"\n\t\t||
+||\t\t\tEl programa ha Finalizado\t\t\t||
+||\t\t\tRevisar la Carpeta "Presentes"\t\t\t||
 ==========================================================================""")
