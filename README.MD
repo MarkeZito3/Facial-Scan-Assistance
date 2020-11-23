@@ -6,7 +6,7 @@ Hola, este es el programa de los alumnos:
 
 Este programa se encarga de Tomar asistencias de los alumnos con tan solo una cámara. Solo deben ponerse en frente de ella para que, si su rostro está registrado, lo anote en una lista de alumnos precentes.
 
-Este programa cuenta con las librerías: ```OpenCV, Os, Numpy 1.19.3, imutils```. (estas librerías se podrán instlalar con el archivo ```pip_archivo.bat``` en caso de necesitarlo)
+Este programa cuenta con las librerías: ```OpenCV, Os, Numpy 1.19.3, imutils```. (estas librerías se podrán instalar con el archivo ```pip_archivo.bat``` en caso de necesitarlo)
 Tambien cuenta con el framework: ```haarcascade_frontalface_default.xml``` de Malayanil cuyo repositorio dejaré a continuación: 
 
 https://github.com/Malayanil/FaceDetectionHC
