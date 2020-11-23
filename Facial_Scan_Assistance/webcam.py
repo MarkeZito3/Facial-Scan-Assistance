@@ -121,9 +121,9 @@ def assistance():
         faces = faceClassif.detectMultiScale(gray, 1.3, 15)
 
         if fecha in os.listdir(filePath):
-            cv2.putText(frame, '"ESC" para salir. ', (10, 20), 2, 0.5, (128, 0, 255), 1, cv2.LINE_AA)
+            cv2.putText(frame, '[ESC] para salir. ', (10, 20), 2, 0.5, (128, 0, 255), 1, cv2.LINE_AA)
         else:
-            cv2.putText(frame, '"ESC" para salir. Solo si se reconoció a todos los Alumnos PRESENTES', (10, 20), 2, 0.5,
+            cv2.putText(frame, '[ESC] para salir. Solo si se reconoció a todos los Alumnos PRESENTES', (10, 20), 2, 0.5,
                         (128, 0, 255), 1, cv2.LINE_AA)
 
         for (x, y, w, h) in faces:
