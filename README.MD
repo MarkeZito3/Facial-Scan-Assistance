@@ -1,16 +1,16 @@
-#Integrantes: 
+# Integrantes: 
 
 - Marcos Gabriel Pereyra
 - Leonardo David Paez
 - Miguel Angel Luis Rubin Azas 
 - Marcelo Ruiz Burgos
 
-#Funcionalidad:
+# Funcionalidad:
 
 Este programa se encarga de tomar asistencias de alumnos con reconocimiento facial. Solo deben ponerse en frente de la cámara para que, si su rostro está registrado, lo anote en una lista de alumnos precentes.
 En caso de no estar registrado aparecerá _**Desconocido**_ ensima del sujeto.
 
-#Librerías
+# Librerías
 
 - _OpenCV_ `pip install opencv-contrib-python==4.4.0.46`
 - _Os_ 
