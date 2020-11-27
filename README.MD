@@ -1,20 +1,24 @@
-Hola, este es el programa de los alumnos: 
+#Integrantes: 
 - Marcos Gabriel Pereyra
 - Leonardo David Paez
 - Miguel Angel Luis Rubin Azas 
-- Marcelo Ruiz Burgos.
+- Marcelo Ruiz Burgos
+#Funcionalidad:
+Este programa se encarga de tomar asistencias de alumnos con reconocimiento facial. Solo deben ponerse en frente de la cámara para que, si su rostro está registrado, lo anote en una lista de alumnos precentes.
+En caso de no estar registrado aparecerá _**Desconocido**_ ensima del sujeto.
+#Librerías
+- _OpenCV_ `pip install opencv-contrib-python==4.4.0.46`
+- _Os_ 
+- _Numpy 1.19.3_ `pip install numpy==1.19.3`
+- _imutils_ `pip install imutils`
 
-Este programa se encarga de Tomar asistencias de los alumnos con tan solo una cámara. Solo deben ponerse en frente de ella para que, si su rostro está registrado, lo anote en una lista de alumnos precentes.
+Estas librerías se podrán instalar automaticamente con el archivo ```pip_archivo.bat``` en la carpeta lamada _**"depedencias"**_ caso de necesitarlo.
 
-Este programa cuenta con las librerías: ```OpenCV, Os, Numpy 1.19.3, imutils```. (estas librerías se podrán instalar con el archivo ```pip_archivo.bat``` en caso de necesitarlo)
-Tambien cuenta con el framework: ```haarcascade_frontalface_default.xml``` de Malayanil cuyo repositorio dejaré a continuación: 
+También cuenta con el framework: ```haarcascade_frontalface_default.xml``` de [Malayanil](https://github.com/Malayanil/FaceDetectionHC).
 
-https://github.com/Malayanil/FaceDetectionHC
 
-debido a inconvenientes que aún no sabemos nuestro proyecto no puede ser comprimido como un .exe
-
-a continuación mostraré los pasos para abrir el proyecto:
+# Instrucciones de Instalación:
 - Tener Cámara conectáda a la computadora
-- Tener instalado Python 3.9 en su Computadora
-- (Solo hace falta instalarlo una sola vez) Instalador de los Archivos necesarios para ejecutar "Facial Scan Assistance.bat" abriendo el archivo llamado "pip_archivo.bat"
-- Ejecuar el archivo llamado "Facial Scan Assistance.bat"
+- Tener instalado [Python 3.9](https://www.python.org/downloads/) en su Computadora
+- (Solo hace falta instalarlo una sola vez) Instalador de los Archivos necesarios para ejecutar _**"Facial Scan Assistance.bat"**_ abriendo el archivo llamado _**"pip_archivo.bat"**_
+- Ejecuar el archivo llamado **_"Facial Scan Assistance"_**
