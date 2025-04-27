@@ -1,133 +1,108 @@
+import tkinter as tk
+from tkinter import simpledialog, messagebox, ttk
+from PIL import Image, ImageTk
 import webcam
-from datetime import date
 import os
+from datetime import date
 
 mes = {
-        1:"Enero",
-        2:"Febrero",
-        3:"Marzo",
-        4:"Abril",
-        5:"Mayo",
-        6:"Junio",
-        7:"Julio",
-        8:"Agosto",
-        9:"Septiembre",
-        10:"Octubre",
-        11:"Noviembre",
-        12:"Diciembre"
-    }
+    1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril", 5: "Mayo", 6: "Junio",
+    7: "Julio", 8: "Agosto", 9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
+}
 dia_semana = {
-        0:"Lunes",
-        1:"Martes",
-        2:"Miércoles",
-        3:"Jueves",
-        4:"Viernes",
-        5:"Sábado",
-        6:"Domingo"
-    }
-fecha = dia_semana[date.today().weekday()] + " " + str(date.today().day) + " de " + mes[date.today().month] + " del " + str(date.today().year)
+    0: "Lunes", 1: "Martes", 2: "Miércoles", 3: "Jueves", 4: "Viernes", 5: "Sábado", 6: "Domingo"
+}
+fecha = f"{dia_semana[date.today().weekday()]} {date.today().day} de {mes[date.today().month]} del {date.today().year}"
+
+root = tk.Tk()
+root.title("Facial Scan Assistance")
+root.geometry("1280x720")
+root.configure(bg="#f0f0f0")
+
+header = tk.Label(root, text=fecha, font=("Helvetica", 14), bg="#f0f0f0")
+header.pack(pady=10)
+
+title = tk.Label(root, text="FACIAL SCAN ASSISTANCE", font=("Helvetica", 18, "bold"), bg="#f0f0f0")
+title.pack(pady=10)
 
 
-menu = """
-\t\t\t\t\t"""+fecha+"""
-==========================================================================
-||\t\tBIENVENIDO/A A "FACIAL SCAN ASSISTANCE"\t\t\t||
-==========================================================================\n
-==========================================================================
-||\tPrecione el Número de la opción que desee:\t\t\t||
-||\t\t1) Agregar nuevos alumnos\t\t\t\t||
-||\t\t2) Tomar asistencia de los alumnos presentes\t\t||
-||\t\t3) Ver lista de los alumnos totales\t\t\t||
-||\t\t4) Salir\t\t\t\t\t\t||
-=========================================================================="""
+def agregar_alumno():
+    name = simpledialog.askstring("Nuevo Alumno", "Ingrese el nombre del alumno:")
+    if name:
+        webcam.camara(name)
+        messagebox.showinfo("Éxito", f"Alumno {name} agregado y modelo entrenado")
 
-while_menu = True
 
-while while_menu == True:
-    print(menu)
-    op = int(input('\t\tNumero Ingresado: '))
+def tomar_asistencia():
+    try:
+        webcam.assistance()
+        messagebox.showinfo("Éxito", "Asistencia tomada correctamente.")
+    except Exception as e:
+        messagebox.showerror("Error", f"Hubo un problema: {e}")
 
-    if op == 1:
-        menu_op_1 = True
-        while menu_op_1 == True:
 
-            person_name = input("Ingrese el nombre del nuevo alumno: ")
-            print("==========================================================================")
-            webcam.camara(person_name)
-            os.system("cls")
-            skip = int(input("==========================================================================\n"
-                             "1:[volver al Menu Pricipal]\n"
-                             "2:[Ingresar un nuevo Alumnos o uno ya existente]\n"
-                             "3:[Salir]\n"
-                             "Opción: "))
-            if skip == 1:
-                os.system("cls")
-                webcam.training()
-                break
-            elif skip == 2:
-                menu_op_1 = True
-                os.system("cls")
-            elif skip == 3:
-                while_menu = False
-                webcam.training()
-                os.system("cls")
-                break
-        os.system("cls")
+import tkinter as tk
+from tkinter import messagebox
+import os
+from datetime import datetime
 
-    elif op == 2:
-        menu_op_2 = True
-        while menu_op_2 == True:
-            print("==========================================================================")
-            webcam.assistance()
-            print("==========================================================================\n")
-            os.system("cls")
-            skip = int(input("==========================================================================\n"
-                             "1:[volver al Menu Pricipal]\n"
-                             "2:[Volver a ver tomar asistencia]\n"
-                             "3:[Salir]\n"
-                             "Opción: "))
-            if skip == 1:
-                os.system("cls")
-                break
-            elif skip == 2:
-                menu_op_2 = True
-                os.system("cls")
-            elif skip == 3:
-                while_menu = False
-                os.system("cls")
-                break
+def mostrar_lista():
+    alumnos = webcam.lista()
+    presentes_actuales = []
 
-    elif op == 3:
-        menu_op_3 = True
-        while menu_op_3 == True:
-            lista_alum = webcam.lista()
-            cont = 1
-            os.system("cls")
-            print("==========================================================================")
-            for x in lista_alum:
-                print(cont,")" ,x)
-                cont+= 1
-            skip = int(input("==========================================================================\n"
-                         "1:[volver al Menu Pricipal]\n"
-                         "2:[Volver a ver la Lista de Alumnos]\n"
-                         "3:[Salir]\n"
-                         "Opción: "))
-            if skip == 1:
-                os.system("cls")
-                break
-            elif skip == 2:
-                menu_op_3 = True
-                os.system("cls")
-            elif skip == 3:
-                while_menu = False
-                os.system("cls")
-                break
+    # Intentar leer la lista de presentes del archivo del día
+    try:
+        fecha_archivo = datetime.now().strftime("%d-%m-%Y")
+        archivo_path = f"Presentes/{fecha_archivo}.txt"
+        if os.path.exists(archivo_path):
+            with open(archivo_path, "r") as f:
+                # Actualizar para leer el nuevo formato con checkbox
+                presentes_actuales = [line.split(" - ")[0].strip()[4:] for line in f.readlines() if "[x]" in line]
+    except Exception as e:
+        print("No se pudo leer la lista de presentes:", e)
 
-    elif op == 4:
-        while_menu = False
-        os.system("cls")
+    lista_ventana = tk.Toplevel()
+    lista_ventana.title("Lista de Alumnos")
+    lista_ventana.geometry("350x500")
 
-print("""==========================================================================
-||\t\t\tEl programa ha Finalizado\t\t\t||
-||\t\t\tRevisar la Carpeta "Presentes"\t\t\t||
-==========================================================================""")
+    tk.Label(lista_ventana, text="Lista de Alumnos", font=("Helvetica", 14)).pack(pady=10)
+
+    frame_checkboxes = tk.Frame(lista_ventana)
+    frame_checkboxes.pack(fill=tk.BOTH, expand=True)
+
+    checkboxes = {}
+    for alumno in alumnos:
+        var = tk.BooleanVar(value=alumno in presentes_actuales)
+        cb = tk.Checkbutton(frame_checkboxes, text=alumno, variable=var, font=("Helvetica", 12))
+        cb.pack(anchor='w', padx=10)
+        checkboxes[alumno] = var
+
+    def guardar_cambios():
+        nuevos_presentes = [nombre for nombre, var in checkboxes.items() if var.get()]
+        try:
+            with open(archivo_path, "w") as f:
+                # Obtener todos los alumnos y ordenarlos alfabéticamente
+                todos_alumnos = sorted(checkboxes.keys())
+                for nombre in todos_alumnos:
+                    hora_actual = datetime.now().strftime("%H:%M:%S")
+                    # Agregar checkbox en formato [x] o [ ]
+                    checkbox = "[x]" if nombre in nuevos_presentes else "[ ]"
+                    f.write(f"{checkbox} {nombre} - {hora_actual}\n")
+            messagebox.showinfo("Guardado", "Lista de presentes actualizada.")
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudo guardar la lista: {e}")
+
+    tk.Button(lista_ventana, text="Guardar cambios", command=guardar_cambios, font=("Helvetica", 12)).pack(pady=10)
+
+
+frame_buttons = tk.Frame(root, bg="#f0f0f0")
+frame_buttons.pack(pady=20)
+
+tk.Button(frame_buttons, text="Agregar Alumno", font=("Helvetica", 12), command=agregar_alumno, compound="left", padx=10).grid(row=0, column=0, padx=10, pady=10)
+tk.Button(frame_buttons, text="Tomar Asistencia", font=("Helvetica", 12), command=tomar_asistencia, compound="left", padx=10).grid(row=0, column=1, padx=10, pady=10)
+tk.Button(frame_buttons, text="Ver Lista de Alumnos", font=("Helvetica", 12), command=mostrar_lista, compound="left", padx=10).grid(row=0, column=2, padx=10, pady=10)
+tk.Button(frame_buttons, text="Entrenar", font=("Helvetica", 12), command=webcam.training, compound="left", padx=10).grid(row=0, column=3, padx=10, pady=10)
+
+tk.Button(root, text="Salir", command=root.quit, font=("Helvetica", 12), bg="#e06666").pack(pady=20)
+
+root.mainloop()
